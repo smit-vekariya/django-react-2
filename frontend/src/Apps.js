@@ -62,18 +62,11 @@ export default function Apps() {
       .catch(error => console.log(error))
   }
 
-  const completeTask = item => {
-    if (item.id) {
-      item.is_complete = true
+  const is_completeTask = (item) =>{
+     if (item.id) {
+      item.is_complete = !viewCompleted
       axios.put(baseUrl + `${item.id}/`, item).then((res) => refreshList()).catch(error => console.log(error))
       return;
-    }
-  }
-  const incompleteTask = item => {
-    if (item.id) {
-      item.is_complete = false
-      axios.put(baseUrl + `${item.id}/`, item).then((res) => refreshList()).catch(error => console.log(error))
-      return
     }
   }
   const handleSubmit = item => {
@@ -98,12 +91,7 @@ export default function Apps() {
     return (
       newItems.map((item) => (
         <tr key={item.id}>
-          <td>
-            {viewCompleted ?
-              <button onClick={() => incompleteTask(item)} className="btn btn-secondary">Incomplate</button> :
-              <button onClick={() => completeTask(item)} className="btn btn-secondary">Complate</button>
-            }
-          </td>
+          <td><button onClick={() => is_completeTask(item)} className="btn btn-secondary"> {viewCompleted ? "Incomplate":"Complate"}</button></td>
           <td className={`todo-title mr-2 ${viewCompleted ? "completed-todo" : ""}`} >{item.title}</td>
           <td className={`todo-title mr-2 ${viewCompleted ? "completed-todo" : ""}`} >{item.description}</td>
           <td><button onClick={() => editItem(item)} className="btn btn-secondary mr-2">Edit</button></td>
