@@ -57,23 +57,11 @@ export default function Apps() {
         setTaskList(result.data.results)
         setPreviousUrl(result.data.previous)
         setNextUrl(result.data.next)
+        setViewCompleted(res)
       })
       .catch(error => console.log(error))
-    return setViewCompleted(res)
   }
 
-  function renderTabList() {
-    return (
-      <div className="my-3 tab-list">
-        <span onClick={() => displayComplete(true)} className={viewCompleted ? "active" : ""}>
-          Complated
-        </span>
-        <span onClick={() => displayComplete(false)} className={viewCompleted ? "" : "active"}>
-          Incomplated
-        </span>
-      </div>
-    )
-  }
   const completeTask = item => {
     if (item.id) {
       item.is_complete = true
@@ -131,7 +119,14 @@ export default function Apps() {
       <div className="row ">
         <div className="col-md-6 col-sm-10 mx-auto p-0">
           <div className="ard p-3">
-            {renderTabList()}
+            <div className="my-3 tab-list">
+              <span onClick={() => displayComplete(true)} className={viewCompleted ? "active" : ""}>
+                Complated
+              </span>
+              <span onClick={() => displayComplete(false)} className={viewCompleted ? "" : "active"}>
+                Incomplated
+              </span>
+            </div>
             <div className="input-group w-60">
               <span className="input-group-text" id="basic-addon1">Search</span>
               <input type="text" className="form-control" onChange={(e) => setSearch(e.target.value)} placeholder="Write Something" aria-label="Input group example" aria-describedby="basic-addon1" />
