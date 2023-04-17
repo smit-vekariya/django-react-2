@@ -23,6 +23,7 @@ router.register(r'tasks', views.TodoView, 'task')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',include('blog.urls', namespace="blog")),
+    path('blog_api/',include('blog_api.urls', namespace="blog_api")),
     path('api/', include(router.urls)),
-
 ]
