@@ -4,18 +4,34 @@ import ReactDOM from 'react-dom/client';
 import Apps from './Apps';
 import Main from './main';
 import './index.css';
+import {
+  BrowserRouter as Router,
+  Routes ,
+  Route,
+} from "react-router-dom";
 // import * as serviceWorker from './serviceWorker';
-// import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
-import Header from './components/Header.js'
-import Footer from './components/Footer.js'
+import Header from './components/header.js'
+import Footer from './components/footer.js'
 // import Sidebar from './components/Sidebar.js'
-
+import SignUp from './components/register'
+import Login from './components/login'
+import Logout from './components/logout'
+import Single from './components/single'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Header />
-    {/* <Apps /> */}
-    <Main />
-    <Footer />
+    {window.location.pathname !== "/register" && window.location.pathname !== "/login" ? (<Header />) : null}
+    <Router>
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/main' element={<Main />} />
+        <Route path='/apps' element={<Apps />} />
+        <Route path='/register' element={<SignUp />} />
+        <Route path='/logout' element={<Logout />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/post/:slug' element={<Single />} />
+      </Routes>
+    </Router>
+    {window.location.pathname !== "/register" && window.location.pathname !== "/login" ? (<Footer />) : null}
   </React.StrictMode>
 );

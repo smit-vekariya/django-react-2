@@ -1,23 +1,25 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import { Space, Spin } from 'antd';
 
-function PostLoading(component){
-    return ( function PostLoadingComponent({isLoading, ...props}){
-        if(!isLoading){
-            return(
-                <Component {...props}/>
-            )
+function PostLoadingComponent(PostComponent){
+    return (
+        function PostLoading({isLoading, ...props}){
+            if(!isLoading){
+                return(
+                    <PostComponent {...props}/>
+                )
+            }
+            else{
+                return (
+                    <Space direction="vertical" style={{width: '100%'}}>
+                        <Spin tip="Loading" size="large">
+                            <div className="content"/>
+                        </Spin>
+                    </Space>
+                )
+            }
         }
-        else{
-            return (
-                <Space direction="vertical" style={{width: '100%'}}>
-                    <Spin tip="Loading" size="large">
-                        <div className="content"/>
-                    </Spin>
-                </Space>
-            )
-        }
-    })
+    )
 }
 
-export default PostLoading;
+export default PostLoadingComponent;

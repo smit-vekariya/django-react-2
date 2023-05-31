@@ -1,0 +1,29 @@
+.post_card{
+    background-color: white;
+    width: 18rem;
+}
+.footer{
+    background-color: #001529;
+    color: white;
+}
+.main_button{
+    background-color: black;
+}
+.main_2_button{
+    background-color: #001529;
+}
+.registerdiv{
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 35%;
+    border: 2px solid #001529;
+    padding: 15px;
+    color: #001529;
+    border-radius: 10px;
+    opacity: 10px;
+}
+.fontfamily{
+    font-family:'Fantasy' ;
+    color: #001529;
+}

@@ -9,6 +9,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ["category", "title", "auther", "slug", "status"]
-    repopulated_fields = {'slug':('title',), }
+    list_display = ["category", "title", "author", "slug", "status"]
+    prepopulated_fields = { 'slug': ['title'] }
     # list_display = [field.name for field in Post._meta.get_fields()]

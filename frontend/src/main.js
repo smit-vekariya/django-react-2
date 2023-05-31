@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './main.css'
 import Posts from './components/Posts'
 import axios from 'axios';
+import axiosInstance from './axios'
 import PostLoadingComponent from './components/PostLoading'
 
 function Main(){
@@ -13,12 +14,16 @@ function Main(){
     })
     useEffect(()=>{
         setAppState({loading:true})
-        axios.get(baseUrl)
-        .then(posts => {
-            setAppState({loading:false, posts:posts})
-        })
+         try{
+            axiosInstance.get("blog_api/")
+            .then((posts)=>{
+                setAppState({loading:false, posts:posts})
+            });
+        }
+        catch(error){
+             throw error;
+        }
     }, [setAppState])
-
     return(
         <div className='Main'>
             <h3 style={{ textAlign:"center"}}>Announcements</h3>

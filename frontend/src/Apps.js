@@ -1,9 +1,8 @@
-import axios from 'axios';
+import axiosInstance from './axios'
 import React, { useEffect, useState } from "react";
 import Modal from "./components/Modals";
 
 export default function Apps() {
-  const baseUrl = "http://localhost:8000/api/tasks/"
   const [formData, setFormData] = useState({ title: "", description: "", is_complete: false })
   const [formAddEditData, setFormAddEditData] = useState()
   const [isShow, setIsShow] = useState(false)
@@ -31,7 +30,7 @@ export default function Apps() {
     setIsShow(!isShow)
   }
   const refreshList = () => {
-    axios.get(baseUrl + `?title=${search}&is_complete=${viewCompleted}`)
+    axiosInstance.get(`api/tasks/?title=${search}&is_complete=${viewCompleted}`)
       .then(result => {
         setTaskList(result.data.results)
         setPreviousUrl(result.data.previous)
@@ -42,7 +41,7 @@ export default function Apps() {
   }
 
   const paginationHandler = (url) => {
-    axios.get(url)
+    axiosInstance.get(url)
       .then(result => {
         setTaskList(result.data.results)
         setPreviousUrl(result.data.previous)
@@ -52,7 +51,7 @@ export default function Apps() {
   }
 
   function displayComplete(res) {
-    axios.get(baseUrl + `?title=${search}&is_complete=${res}`)
+    axiosInstance.get(`api/tasks/?title=${search}&is_complete=${res}`)
       .then(result => {
         setTaskList(result.data.results)
         setPreviousUrl(result.data.previous)
@@ -65,23 +64,23 @@ export default function Apps() {
   const is_completeTask = (item) =>{
      if (item.id) {
       item.is_complete = !viewCompleted
-      axios.put(baseUrl + `${item.id}/`, item).then((res) => refreshList()).catch(error => console.log(error))
+      axiosInstance.put(`api/tasks/${item.id}/`, item).then((res) => refreshList()).catch(error => console.log(error))
       return;
     }
   }
   const handleSubmit = item => {
     toggle()
     if (item.id) {
-      axios.put(baseUrl + `${item.id}/`, item).then((res) => refreshList()).catch(error => console.log(error))
+      axiosInstance.put(`api/tasks/${item.id}/`, item).then((res) => refreshList()).catch(error => console.log(error))
     }
     else {
-      axios.post(baseUrl, item).then((res) => refreshList()).catch(error => console.log(error));
+      axiosInstance.post("api/tasks/", item).then((res) => refreshList()).catch(error => console.log(error));
     }
 
   }
   const deleteItem = (item) => {
     alert("Are you sure you want to delete?")
-    axios.delete(baseUrl + `${item.id}/`).then((res) => refreshList()).catch(error => console.log(error))
+    axiosInstance.delete(`api/tasks/${item.id}/`).then((res) => refreshList()).catch(error => console.log(error))
   }
 
 

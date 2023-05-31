@@ -17,13 +17,21 @@ from django.contrib import admin
 from django.urls import path , include
 from rest_framework import routers
 from todo import views
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 router = routers.DefaultRouter()
 router.register(r'tasks', views.TodoView, 'task')
 
 urlpatterns = [
+    path('blog_api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('blog_api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('admin/', admin.site.urls),
     path('',include('blog.urls', namespace="blog")),
     path('blog_api/',include('blog_api.urls', namespace="blog_api")),
     path('api/', include(router.urls)),
+    path('blog_api/user/', include("users.urls", namespace="users")),
+    path('blog-api-auth/', include('rest_framework.urls', namespace="blog_api_auth")),
 ]

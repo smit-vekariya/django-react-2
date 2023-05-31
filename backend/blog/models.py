@@ -3,6 +3,7 @@ from statistics import mode
 import time
 from unicodedata import category
 from xml.sax import default_parser_list
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -31,7 +32,7 @@ class Post(models.Model):
     content = models.TextField()
     slug = models.SlugField(max_length=250, unique_for_date='published')
     published = models.DateTimeField(default = timezone.now)
-    auther = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blog_posts')
     status = models.CharField(max_length=10, choices=statusOption, default='published')
     objects= models.Manager() #default manager
     postobjects = PostObjects() #custom manager
