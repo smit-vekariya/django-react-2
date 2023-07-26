@@ -12,7 +12,6 @@ export default function Single(){
     useEffect(()=>{
         axiosInstance.get(`blog_api/${slug}/`).then((res)=>{
             setData({posts:res.data})
-            console.log(res.data)
         }).catch((error) =>{console.log(error)});
     }, [setData])
 

@@ -4,6 +4,7 @@ import { Space, Spin } from 'antd';
 function PostLoadingComponent(PostComponent){
     return (
         function PostLoading({isLoading, ...props}){
+            console.log(props)
             if(!isLoading){
                 return(
                     <PostComponent {...props}/>

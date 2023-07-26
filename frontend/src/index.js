@@ -17,6 +17,11 @@ import SignUp from './components/register'
 import Login from './components/login'
 import Logout from './components/logout'
 import Single from './components/single'
+import Admin from './Admin'
+import Create from './components/admin/create'
+import Edit from './components/admin/edit'
+import Delete from './components/admin/delete'
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -30,6 +35,11 @@ root.render(
         <Route path='/logout' element={<Logout />} />
         <Route path='/login' element={<Login />} />
         <Route path='/post/:slug' element={<Single />} />
+        <Route path='/admin' element={<Admin/>} />
+        <Route path='/admin/create' element={<Create/>} />
+        <Route path='/admin/edit/:id' element={<Edit/>} />
+        <Route path='/admin/delete/:id' element={<Delete/>} />
+
       </Routes>
     </Router>
     {window.location.pathname !== "/register" && window.location.pathname !== "/login" ? (<Footer />) : null}

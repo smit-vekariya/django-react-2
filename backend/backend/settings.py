@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-sq*m_l*+$sbi4fu86it7n4p#)86kr$!%ntch)*==o$)qk)oe9y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.43.160','172.20.10.3','localhost','127.0.0.1']
 
 
 # Application definition
@@ -144,12 +144,13 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend'
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
         # 'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS':'rest_framework.schemas.coreapi.AutoSchema'
 }
 
 AUTH_USER_MODEL = "users.NewUser"

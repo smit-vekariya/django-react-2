@@ -12,14 +12,13 @@ const axiosInstance = axios.create({
         'accept':'application/json'
     },
 });
-
 axiosInstance.interceptors.response.use(
     response => response,
     error => {
         const originalRequest = error.config;
 
         // Prevent infinite loops
-        if (error.response.status === 401 && originalRequest.url === baseURL+'blog_api/token/refresh/') {
+        if (error.response.status === 401 && originalRequest.url === 'blog_api/token/refresh/') {
             window.location.href = '/login/';
             return Promise.reject(error);
         }
@@ -62,8 +61,6 @@ axiosInstance.interceptors.response.use(
                     window.location.href = '/login/';
                 }
         }
-
-
       // specific error handling done elsewhere
       return Promise.reject(error);
   }
