@@ -23,7 +23,7 @@ const Posts = (props) =>{
                         <Card.Body>
                             <Card.Title>{item.title}</Card.Title>
                             <Card.Text style={{height:"70px"}}>{item.content}</Card.Text>
-                            <Button className="main_2_button" href={"post/"+item.slug}>know more</Button>
+                            <Button className="main_2_button" href={"post/"+item.id}>know more</Button>
                         </Card.Body>
                     </Card>
                 </Col>

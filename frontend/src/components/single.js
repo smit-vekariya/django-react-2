@@ -6,12 +6,12 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 export default function Single(){
-    const {slug} = useParams()
+    const {id} = useParams()
     const[data, setData] = useState({posts:[]})
 
     useEffect(()=>{
-        axiosInstance.get(`blog_api/${slug}/`).then((res)=>{
-            setData({posts:res.data})
+        axiosInstance.get(`blog_api/get_blog/${id}`).then((res)=>{
+            setData({posts:res.data[0]})
         }).catch((error) =>{console.log(error)});
     }, [setData])
 

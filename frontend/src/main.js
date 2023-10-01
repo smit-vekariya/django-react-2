@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './main.css'
 import Posts from './components/Posts'
-import axios from 'axios';
 import axiosInstance from './axios'
 import PostLoadingComponent from './components/PostLoading'
 

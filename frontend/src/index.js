@@ -34,7 +34,7 @@ root.render(
         <Route path='/register' element={<SignUp />} />
         <Route path='/logout' element={<Logout />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/post/:slug' element={<Single />} />
+        <Route path='/post/:id' element={<Single />} />
         <Route path='/admin' element={<Admin/>} />
         <Route path='/admin/create' element={<Create/>} />
         <Route path='/admin/edit/:id' element={<Edit/>} />

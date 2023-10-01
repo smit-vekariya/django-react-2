@@ -23,6 +23,10 @@ const AdminPosts = (props) => {
       })
     }
 
+    const onClose=()=>{
+      setIsShow(!isShow)
+    }
+
     const toggle = () => {
       setIsShow(!isShow)
     }
@@ -67,6 +71,7 @@ const AdminPosts = (props) => {
         headerText = "Delete Post"
         text="Are you sure you want to Delete this post?"
         onConfirm={onConfirm}
+        onClose={onClose}
         />
       ):null}
     </>

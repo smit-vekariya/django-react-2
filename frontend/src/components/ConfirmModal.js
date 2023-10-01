@@ -5,6 +5,7 @@ export default function ConfirmModal(props){
     const {text} = props
     const {headerText} = props
     const {id} =props
+    const {onClose} = props
     const confirm = e =>{
         e.preventDefault()
         const {onConfirm} = props
@@ -19,7 +20,7 @@ export default function ConfirmModal(props){
                 </FormGroup>
             </ModalBody>
             <ModalFooter>
-                <Button>No</Button>
+                <Button onClick={()=>onClose()}>No</Button>
                 <Button color="success" onClick={confirm}>Yes</Button>
             </ModalFooter>
         </Modal>
